@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imposter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Imposter</h1>
+        
+        <div class="card">
+            <div class="input-group">
+                <label for="roomCode">Room Code</label>
+                <input type="text" id="roomCode" placeholder="e.g., PINKFISH" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="playerNumber">Player Number (1-6)</label>
+                <input type="number" id="playerNumber" min="1" max="6" placeholder="1-6">
+            </div>
+            
+            <button id="revealBtn">Reveal My Role</button>
+            
+            <div id="result" class="result hidden">
+                <div id="roleDisplay"></div>
+                <div id="wordDisplay"></div>
+            </div>
+            
+            <div class="timer-section">
+                <div id="roundInfo">Round: --</div>
+                <div id="countdown">Next round in: --</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
