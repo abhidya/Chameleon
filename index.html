@@ -12,12 +12,17 @@
         
         <div class="card">
             <div class="input-group">
+                <label for="totalPlayers">Total Players: <span id="totalPlayersValue">6</span></label>
+                <input type="range" id="totalPlayers" min="3" max="12" value="6">
+            </div>
+            
+            <div class="input-group">
                 <label for="roomCode">Room Code</label>
                 <input type="text" id="roomCode" placeholder="e.g., PINKFISH" autocomplete="off">
             </div>
             
             <div class="input-group">
-                <label for="playerNumber">Player Number (1-6)</label>
+                <label for="playerNumber">Player Number (<span id="playerNumberRange">1-6</span>)</label>
                 <input type="number" id="playerNumber" min="1" max="6" placeholder="1-6">
             </div>
             

@@ -27,7 +27,7 @@ const wordList = [
 // GAME CONFIGURATION
 // ============================================================================
 const ROUND_LENGTH_SECONDS = 120; // 2 minutes per round
-const TOTAL_PLAYERS = 6;
+let TOTAL_PLAYERS = 6; // Dynamically configurable via slider
 
 // ============================================================================
 // DETERMINISTIC PSEUDORANDOM NUMBER GENERATOR
@@ -115,11 +115,11 @@ function getSecondsUntilNextRound() {
 // ============================================================================
 
 /**
- * Determines which player (1-6) is the Imposter for a given room and round.
+ * Determines which player is the Imposter for a given room and round.
  * 
  * @param {string} roomCode - The shared room code
  * @param {string} roundKey - The round identifier (typically the round number as string)
- * @returns {number} Player number (1-6) who is the Imposter
+ * @returns {number} Player number (1 to TOTAL_PLAYERS) who is the Imposter
  */
 function getImposterPlayer(roomCode, roundKey) {
     const seed = roomCode + "-imposter-" + roundKey;
@@ -142,6 +142,9 @@ function getSecretWord(roomCode, roundKey) {
 // ============================================================================
 // UI ELEMENTS
 // ============================================================================
+const totalPlayersSlider = document.getElementById('totalPlayers');
+const totalPlayersValue = document.getElementById('totalPlayersValue');
+const playerNumberRange = document.getElementById('playerNumberRange');
 const roomCodeInput = document.getElementById('roomCode');
 const playerNumberInput = document.getElementById('playerNumber');
 const revealBtn = document.getElementById('revealBtn');
@@ -170,8 +173,8 @@ function revealRole() {
     }
     
     // Validate player number
-    if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > 6) {
-        alert('Please enter a valid player number (1-6).');
+    if (isNaN(playerNumber) || playerNumber < 1 || playerNumber > TOTAL_PLAYERS) {
+        alert(`Please enter a valid player number (1-${TOTAL_PLAYERS}).`);
         return;
     }
     
@@ -217,6 +220,20 @@ function updateTimer() {
 // ============================================================================
 // EVENT LISTENERS & INITIALIZATION
 // ============================================================================
+
+/**
+ * Updates the TOTAL_PLAYERS configuration and UI when slider changes.
+ */
+function updateTotalPlayers() {
+    TOTAL_PLAYERS = parseInt(totalPlayersSlider.value, 10);
+    totalPlayersValue.textContent = TOTAL_PLAYERS;
+    playerNumberRange.textContent = `1-${TOTAL_PLAYERS}`;
+    playerNumberInput.max = TOTAL_PLAYERS;
+    playerNumberInput.placeholder = `1-${TOTAL_PLAYERS}`;
+}
+
+// Total players slider handler
+totalPlayersSlider.addEventListener('input', updateTotalPlayers);
 
 // Reveal button click handler
 revealBtn.addEventListener('click', revealRole);
