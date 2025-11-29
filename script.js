@@ -235,6 +235,9 @@ function updateTotalPlayers() {
 // Total players slider handler
 totalPlayersSlider.addEventListener('input', updateTotalPlayers);
 
+// Initialize UI to match slider default value
+updateTotalPlayers();
+
 // Reveal button click handler
 revealBtn.addEventListener('click', revealRole);
 
