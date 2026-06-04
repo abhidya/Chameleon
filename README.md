@@ -7,6 +7,7 @@ A single-page static website for a party game called "Imposter." This game runs 
 This repo is ready to demo as static HTML:
 
 ```bash
+node smoke.mjs
 python3 -m http.server 8000
 ```
 
