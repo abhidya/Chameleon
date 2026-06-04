@@ -2,10 +2,20 @@
 
 A single-page static website for a party game called "Imposter." This game runs entirely in the browser with no backend, database, or third-party services required.
 
+## Demo Quick Start
+
+This repo is ready to demo as static HTML:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/` on each phone or laptop. Everyone should use the same room code, choose a unique player number, and keep device clocks reasonably close because rounds are time-based.
+
 ## How to Play
 
-1. **Everyone joins the same room**: All players (up to 6) enter the same room code (e.g., "PINKFISH").
-2. **Select your player number**: Each player picks a unique number from 1-6.
+1. **Everyone joins the same room**: All players (3-120) enter the same room code (e.g., "PINKFISH").
+2. **Select your player number**: Each player picks a unique number in the displayed range.
 3. **Reveal your role**: Press "Reveal My Role" to see if you're the Imposter or a regular player.
 4. **Regular players** see a secret word.
 5. **The Imposter** sees no word and must blend in by listening to clues from other players.
@@ -67,6 +77,12 @@ open index.html
 python -m http.server 8000
 # Then visit http://localhost:8000
 ```
+
+## Demo Limitations
+
+- There is no server-side room membership, so the group must coordinate player numbers manually.
+- Rounds reset every 2 minutes based on each device's local clock.
+- The imposter can reveal another player's role by entering that player's number; treat numbers as private.
 
 ## Files
 
